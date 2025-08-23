@@ -57,8 +57,8 @@ PACKAGES=(
     papirus-icon-theme
     adwaita-cursors
     nwg-look
-    qt5-ct
-    qt6-ct
+    qt5ct
+    qt6ct
     network-manager-applet
     stow
     wget
@@ -66,6 +66,7 @@ PACKAGES=(
     tar
     zip
     unzip
+    fastfetch
 )
 
 echo -e "${GREEN}==> Installing required packages...${RESET}"
@@ -76,6 +77,7 @@ echo -e "${GREEN}==> Base packages installed successfully!${RESET}"
 echo -e "${GREEN}==> Enabling system services...${RESET}"
 sudo systemctl enable sddm.service
 sudo systemctl enable cronie.service
+xdg-user-dirs-update
 
 echo -e "${GREEN}==> Enabling Hyprland user services...${RESET}"
 for service in \
