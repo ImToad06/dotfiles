@@ -7,6 +7,7 @@ vim.g.have_nerd_font = true
 
 -- Use spaces instead of tab
 vim.o.expandtab = true
+vim.o.shiftwidth = 4
 
 -- Line numbers
 vim.o.number = true
@@ -35,6 +36,9 @@ vim.o.smartcase = true
 
 -- Keep signcolumn on by default
 vim.o.signcolumn = "yes"
+
+-- Draw vertical column
+vim.opt.colorcolumn = "100"
 
 -- Decrease update time
 vim.o.updatetime = 250
