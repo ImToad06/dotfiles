@@ -15,14 +15,6 @@ PACKAGES=(
     sddm
     uwsm
     hyprland
-    kitty
-    xdg-user-dirs
-    thunar
-    gvfs
-    thunar-archive-plugin
-    file-roller
-    tumbler
-    ffmpegthumbnailer
     swaync
     pipewire
     wireplumber
@@ -35,6 +27,15 @@ PACKAGES=(
     noto-fonts-emoji
     noto-fonts-cjk
     ttf-cascadia-code-nerd
+    ttf-liberation
+    kitty
+    xdg-user-dirs
+    thunar
+    gvfs
+    thunar-archive-plugin
+    file-roller
+    tumbler
+    ffmpegthumbnailer
     rofi-wayland
     waybar
     hyprpaper
@@ -67,6 +68,7 @@ PACKAGES=(
     zip
     unzip
     fastfetch
+    starship
 )
 
 echo -e "${GREEN}==> Installing required packages...${RESET}"
@@ -87,21 +89,19 @@ for service in \
     swaync.service \
     waybar.service
 do
-    sudo -u "$USER" systemctl --user enable "$service"
+    systemctl --user enable "$service"
 done
 
 echo -e "${GREEN}==> Setting up user Qt environment variables...${RESET}"
 
-USER_ENV_DIR="$HOME/.config/environment.d"
-USER_ENV_FILE="$USER_ENV_DIR/envvars.conf"
+USER_ENV_DIR="$HOME/.config/uwsm"
+USER_ENV_FILE="$USER_ENV_DIR/env"
 
 mkdir -p "$USER_ENV_DIR"
 
 cat > "$USER_ENV_FILE" <<'EOF'
 QT_QPA_PLATFORM=wayland
-QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-QT_AUTO_SCREEN_SCALE_FACTOR=1
-QT_QPA_PLATFORMTHEME=qt5ct
+QT_QPA_PLATFORMTHEME=qt6ct
 EOF
 
 echo -e "${GREEN}==> User environment variables written to $USER_ENV_FILE${RESET}"
@@ -142,14 +142,10 @@ if ! command -v stow &>/dev/null; then
     sudo pacman -S --needed --noconfirm stow
 fi
 
-# Go to the dotfiles repo root (script assumed to be inside it)
-cd "$(dirname "$0")"
-
 # Loop through subdirectories and stow each one
 for dir in */; do
     # Skip if not a directory
     [ -d "$dir" ] || continue
-    
     echo -e "${GREEN}==> Stowing $dir...${RESET}"
     stow -R --target="$HOME" "$dir"
 done

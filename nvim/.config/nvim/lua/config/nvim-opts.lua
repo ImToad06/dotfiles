@@ -38,7 +38,7 @@ vim.o.smartcase = true
 vim.o.signcolumn = "yes"
 
 -- Draw vertical column
-vim.opt.colorcolumn = "100"
+vim.opt.colorcolumn = "80"
 
 -- Decrease update time
 vim.o.updatetime = 250
