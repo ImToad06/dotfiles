@@ -69,8 +69,13 @@ PACKAGES=(
     unzip
     fastfetch
     starship
-    wpctl
     brightnessctl
+    gcc
+    make
+    ripgrep
+    fd
+    tmux
+    fzf
 )
 
 echo -e "${GREEN}==> Installing required packages...${RESET}"
@@ -102,8 +107,7 @@ USER_ENV_FILE="$USER_ENV_DIR/env"
 mkdir -p "$USER_ENV_DIR"
 
 cat > "$USER_ENV_FILE" <<'EOF'
-QT_QPA_PLATFORM=wayland
-QT_QPA_PLATFORMTHEME=qt6ct
+export QT_QPA_PLATFORMTHEME=qt6ct
 EOF
 
 echo -e "${GREEN}==> User environment variables written to $USER_ENV_FILE${RESET}"
@@ -136,20 +140,4 @@ AUR_PACKAGES=(
 
 paru -S --needed --noconfirm "${AUR_PACKAGES[@]}"
 
-echo -e "${GREEN}==> Setting up dotfiles with stow...${RESET}"
-
-# Ensure stow is installed
-if ! command -v stow &>/dev/null; then
-    echo -e "${GREEN}==> Installing stow...${RESET}"
-    sudo pacman -S --needed --noconfirm stow
-fi
-
-# Loop through subdirectories and stow each one
-for dir in */; do
-    # Skip if not a directory
-    [ -d "$dir" ] || continue
-    echo -e "${GREEN}==> Stowing $dir...${RESET}"
-    stow -R --target="$HOME" "$dir"
-done
-
-echo -e "${GREEN}==> Dotfiles successfully stowed!${RESET}"
+echo -e "${GREEN}==> packages successfully installed!${RESET}"
