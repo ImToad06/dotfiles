@@ -69,6 +69,8 @@ PACKAGES=(
     unzip
     fastfetch
     starship
+    wpctl
+    brightnessctl
 )
 
 echo -e "${GREEN}==> Installing required packages...${RESET}"
