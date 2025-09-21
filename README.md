@@ -1,6 +1,6 @@
 # 🚀 Arch Linux Hyprland Dotfiles
 
-A modern, feature-rich Hyprland configuration for Arch Linux with a complete desktop environment setup.
+A simple but functional arch linux setup with hyprland.
 
 <img width="1921" height="1081" alt="image" src="https://github.com/user-attachments/assets/6025d87e-b026-47f0-98eb-c110066ca396" />
 <img width="1921" height="1081" alt="image" src="https://github.com/user-attachments/assets/796b7ec1-a4e2-40d6-a5cc-c7c41d400234" />
