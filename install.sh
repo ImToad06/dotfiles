@@ -77,6 +77,7 @@ PACKAGES=(
     ripgrep
     fd
     fzf
+    nvm
     stow
     tmux
     starship
