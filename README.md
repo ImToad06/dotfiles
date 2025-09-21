@@ -68,6 +68,70 @@ A simple but functional arch linux setup with hyprland.
    sudo reboot
    ```
 
+## 🖼️ Wallpapers and Icons Setup
+
+**Important**: This repository does **NOT** include wallpapers or icons. You must provide your own.
+
+### Required Directory Structure
+
+The configuration files expect the following directory structure in your home folder:
+
+```
+~/Pictures/
+├── wallpapers/          # Place your wallpaper images here
+└── icons/               # Place your icon images here
+```
+
+### Configuration Files Affected
+
+The following configuration files reference these paths:
+
+- **`hyprpaper.conf`** - Looks for wallpapers in `~/Pictures/wallpapers/`
+- **`hyprlock.conf`** - Looks for wallpapers and icons in `~/Pictures/wallpapers/` and `~/Pictures/icons/`
+
+### Setup Steps
+
+1. **Create the directories**:
+   ```bash
+   mkdir -p ~/Pictures/{wallpapers,icons}
+   ```
+
+2. **Add your images**:
+   - Copy your wallpaper images to `~/Pictures/wallpapers/`
+   - Copy any custom icons to `~/Pictures/icons/`
+
+3. **Update configuration files**:
+   - Edit `~/.config/hypr/hyprpaper.conf` to reference your specific wallpaper files
+   - Edit `~/.config/hypr/hyprlock.conf` to reference your wallpaper and icon files
+   - Update file names and paths to match your images
+
+### Example Configuration
+
+**hyprpaper.conf**:
+```bash
+preload = ~/Pictures/wallpapers/your-wpaper.jpg
+wallpaper = ,~/Pictures/wallpapers/your-wpaperr.jpg
+```
+
+**hyprlock.conf**:
+```bash
+background {
+  monitor =
+  path = ~/Pictures/wallpapers/your-wpaper.jpg
+  blur_passes = 0
+  color = rgb(1e1e2e)
+}
+image {
+  monitor =
+  path = ~/Pictures/icons/your-icon.jpg
+  size = 100
+  border_color = $accent
+  position = 0, 75
+  halign = center
+  valign = center
+}
+```
+
 ## 🛠️ Manual Installation
 
 If you prefer to install manually or want to understand what the script does:
