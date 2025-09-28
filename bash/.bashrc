@@ -8,6 +8,9 @@ alias ..='cd ..'
 alias vim='nvim'
 alias fetch='fastfetch'
 
+# ============================== Path ==============================
+export PATH="$HOME/.local/bin:$PATH"
+
 # ============================== Prompt ==============================
 eval "$(starship init bash)"
 

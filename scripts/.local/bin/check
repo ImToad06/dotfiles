@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+
+QUIT_DATE_FILE="$HOME/Documents/me/qtter"
+
+set_quit_date() {
+    echo "Enter your quit date (YYYY-MM-DD format):"
+    read -r quit_date
+    if date -d "$quit_date" >/dev/null 2>&1; then
+        echo "$quit_date" > "$QUIT_DATE_FILE"
+        echo "Quit date set to: $quit_date"
+    else
+        echo "Invalid date format. Please use YYYY-MM-DD"
+        exit 1
+    fi
+}
+
+show_progress() {
+    if [ ! -f "$QUIT_DATE_FILE" ]; then
+        echo "No quit date found. Run with --set to set your quit date first."
+        exit 1
+    fi
+    quit_date=$(cat "$QUIT_DATE_FILE")
+    current_date=$(date +%Y-%m-%d)
+    quit_epoch=$(date -d "$quit_date" +%s)
+    current_epoch=$(date -d "$current_date" +%s)
+    days_diff=$(( (current_epoch - quit_epoch) / 86400 ))
+    if [ $days_diff -lt 0 ]; then
+        echo "Your quit date is in the future! Please check the date."
+        exit 1
+    elif [ $days_diff -eq 0 ]; then
+        echo "Today is Day 0 - Your quit day!"
+        echo "You've got this! The journey begins now."
+    else
+        echo "   Current progress"
+        echo "========================"
+        echo "Quit Date: $quit_date"
+        echo "Today: $current_date"
+        echo ""
+        echo "Current days: $days_diff"
+        if [ $days_diff -eq 1 ]; then
+            echo "First day complete! Your body is already starting to heal."
+        elif [ $days_diff -eq 30 ]; then
+            echo "One month! Slow but steady"
+        elif [ $days_diff -eq 90 ]; then
+            echo "Three months! keep the grind"
+        elif [ $days_diff -eq 365 ]; then
+            echo "ONE YEAR! getting closer to last record"
+        elif [ $days_diff -eq 730 ]; then
+            echo "TWO YEARS! congrats dawg you made it again"
+        elif [ $days_diff -gt 365 ]; then
+            years=$((days_diff / 365))
+            remaining_days=$((days_diff % 365))
+            echo "$years year(s) and $remaining_days days!"
+        fi
+    fi
+}
+
+reset_date() {
+    if [ -f "$QUIT_DATE_FILE" ]; then
+        rm "$QUIT_DATE_FILE"
+        echo "Quit date has been reset."
+    else
+        echo "No quit date was set."
+    fi
+}
+
+case "${1:-}" in
+    --set|-s)
+        set_quit_date
+        ;;
+    --reset|-r)
+        reset_date
+        ;;
+    --help|-h)
+        echo "Qtter tracker"
+        echo "Usage:"
+        echo "  $0          Show current days"
+        echo "  $0 --set    Set your quit date"
+        echo "  $0 --reset  Reset/clear your quit date"
+        echo "  $0 --help   Show this help message"
+        ;;
+    "")
+        show_progress
+        ;;
+    *)
+        echo "Unknown option: $1"
+        echo "Use --help for usage information"
+        exit 1
+        ;;
+esac
