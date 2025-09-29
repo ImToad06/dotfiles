@@ -8,6 +8,11 @@ alias ..='cd ..'
 alias vim='nvim'
 alias fetch='fastfetch'
 
+# ============================== Functions ==============================
+pacs() {
+    paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S
+}
+
 # ============================== Path ==============================
 export PATH="$HOME/.local/bin:$PATH"
 
