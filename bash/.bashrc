@@ -7,6 +7,7 @@ alias grep='grep --color=auto'
 alias ..='cd ..'
 alias vim='nvim'
 alias fetch='fastfetch'
+alias suspend='systemctl suspend'
 
 # ============================== Functions ==============================
 pacs() {
