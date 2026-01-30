@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Arch Linux Hyprland Dotfiles Setup Script
-# Author: Toad
-# Description: Automated setup script for Hyprland setup
-
 set -e
 
 RED='\033[0;31m'
@@ -12,7 +8,6 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-# Logging function
 log() {
     echo -e "${GREEN}[INFO]${NC} $1"
 }
@@ -35,7 +30,7 @@ if ! command -v pacman &> /dev/null; then
     exit 1
 fi
 
-log "Starting Arch Linux Hyprland setup..."
+log "Starting setup"
 
 PACKAGES=(
     sddm
@@ -46,6 +41,7 @@ PACKAGES=(
     pipewire
     wireplumber
     xdg-desktop-portal-hyprland
+    xdg-desktop-portal-gtk
     hyprpolkitagent
     qt5-wayland
     qt6-wayland
@@ -60,11 +56,12 @@ PACKAGES=(
     hypridle
     hyprlock
     hyprshot
-    rofi-wayland
+    rofi
     wl-clipboard
     cliphist
     xdg-user-dirs
     nemo
+    nemo-fileroller
     ffmpegthumbnailer
     network-manager-applet
     base-devel
@@ -100,6 +97,8 @@ PACKAGES=(
     qt5ct
     qt6ct
     rofimoji
+    exa
+    yazi
 )
 
 log "Updating system packages..."
@@ -113,9 +112,9 @@ done
 
 log "Enabling system services..."
 sudo systemctl enable sddm.service
+sudo systemctl enable cronie.service
 
 log "Enabling user services..."
-systemctl --user enable swaync.service
 systemctl --user enable waybar.service
 systemctl --user enable hypridle.service
 systemctl --user enable hyprpolkitagent.service
@@ -125,7 +124,13 @@ log "Setting up user directories..."
 xdg-user-dirs-update
 
 log "Setting kitty as default terminal for nemo..."
+xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
 gsettings set org.cinnamon.desktop.default-applications.terminal exec 'kitty'
+xdg-mime default org.gnome.eog.desktop image/png
+xdg-mime default org.gnome.eog.desktop image/jpeg
+xdg-mime default org.gnome.eog.desktop image/jpg
+xdg-mime default org.gnome.eog.desktop image/gif
+xdg-mime default org.gnome.eog.desktop image/webp
 
 echo
 read -p "Would you like to setup Bluetooth? (y/N): " -n 1 -r bluetooth_choice

@@ -1,20 +1,20 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+# Enable bash-completion
+if [[ -r /usr/share/bash-completion/bash_completion ]]; then
+    source /usr/share/bash-completion/bash_completion
+fi
 
 # ============================== Aliases ==============================
-alias ls='ls --color=auto'
+alias ls='exa -l --icons'
 alias grep='grep --color=auto'
 alias ..='cd ..'
 alias vim='nvim'
 alias fetch='fastfetch'
 alias suspend='systemctl suspend'
 
-# ============================== Functions ==============================
-pacs() {
-    paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro paru -S
-}
-
 # ============================== Path ==============================
+export EDITOR=nvim
 export PATH="$HOME/.local/bin:$PATH"
 
 # ============================== Prompt ==============================

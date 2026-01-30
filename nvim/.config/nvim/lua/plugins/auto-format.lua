@@ -38,6 +38,7 @@ return {
         javascript = { "prettier", "eslint_d" },
         typescript = { "prettier", "eslint_d", stop_after_first = true },
         json = { "prettier" },
+        html = { "prettier" },
       },
     },
   },
