@@ -72,6 +72,7 @@ base_packages() {
         tmux
         neovim
         starship
+        stow
     )
     sudo pacman -Syyu --needed --noconfirm "${PACKAGES[@]}"
     log "Packages installed"
@@ -157,3 +158,21 @@ hyprland(){
     xdg-mime default org.gnome.eog.desktop image/gif
     xdg-mime default org.gnome.eog.desktop image/webp
 }
+
+stow_dotfiles() {
+    rm ~/.bashrc
+    rm -rf ~/.config/hypr
+    stow bash fastfetch hyprland kitty nvim rofi scripts starship swaync tmux tmux-sessionizer waybar
+}
+
+main() {
+    check
+    base_packages
+    paru
+    hyprland
+    stow_dotfiles
+    log "Installation complete!"
+}
+
+main "$@"
+
