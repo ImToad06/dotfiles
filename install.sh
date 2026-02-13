@@ -134,6 +134,10 @@ hyprland(){
         libreoffice-fresh
         gnome-calculator
         fastfetch
+        nwg-look
+        adwaita-cursors
+        papirus-icon-theme
+        adw-gtk-theme
     )
 
     sudo systemctl enable sddm
