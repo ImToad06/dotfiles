@@ -3,6 +3,7 @@ vim.g.have_nerd_font = true
 
 -- Use spaces instead of tab
 vim.o.expandtab = true
+vim.o.shiftwidth = 2
 
 -- Line numbers
 vim.o.number = true

@@ -1,5 +1,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+
 # Enable bash-completion
 if [[ -r /usr/share/bash-completion/bash_completion ]]; then
     source /usr/share/bash-completion/bash_completion
@@ -30,4 +31,6 @@ export FZF_DEFAULT_OPTS="
     --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
 
 # ============================== NodeJS ==============================
-source /usr/share/nvm/init-nvm.sh
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
