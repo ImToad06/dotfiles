@@ -39,6 +39,7 @@ return {
         typescript = { "prettier", "eslint_d", stop_after_first = true },
         json = { "prettier" },
         html = { "prettier" },
+        sh = { "beautysh" },
       },
     },
   },
