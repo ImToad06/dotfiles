@@ -55,6 +55,7 @@ base_packages() {
         openssh
         ufw
         less
+        network-manager-applet
         blueman
         python
         python-pip
@@ -140,6 +141,9 @@ hyprland(){
         papirus-icon-theme
         adw-gtk-theme
     )
+
+    sudo pacman -S --needed --noconfirm "${PACKAGES[@]}"
+
 
     sudo systemctl enable sddm
     systemctl --user enable waybar.service
