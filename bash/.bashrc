@@ -23,12 +23,17 @@ eval "$(starship init bash)"
 
 # ============================== Fzf ==============================
 eval "$(fzf --bash)"
-export FZF_DEFAULT_OPTS="
-    --color=fg:#908caa,bg:#191724,hl:#ebbcba
-    --color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
-    --color=border:#403d52,header:#31748f,gutter:#191724
-    --color=spinner:#f6c177,info:#9ccfd8
-    --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
+# export FZF_DEFAULT_OPTS="
+#     --color=fg:#908caa,bg:#191724,hl:#ebbcba
+#     --color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
+#     --color=border:#403d52,header:#31748f,gutter:#191724
+#     --color=spinner:#f6c177,info:#9ccfd8
+#     --color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+    --color=fg:#e5e9f0,bg:#2E3440,hl:#81a1c1
+    --color=fg+:#e5e9f0,bg+:#2E3440,hl+:#81a1c1
+    --color=info:#eacb8a,prompt:#bf6069,pointer:#b48dac
+    --color=marker:#a3be8b,spinner:#b48dac,header:#a3be8b'
 
 # ============================== NodeJS ==============================
 export NVM_DIR="$HOME/.config/nvm"
