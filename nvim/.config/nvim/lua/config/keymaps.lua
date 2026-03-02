@@ -51,3 +51,5 @@ vim.keymap.set(
   "<C-w><C-k>",
   { desc = "Move focus to the upper window" }
 )
+
+vim.keymap.set("n", "<leader>r", "<cmd>e!<CR>")
